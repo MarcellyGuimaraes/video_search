@@ -6,7 +6,7 @@ const Home = () => {
   const [videos, setVideos] = useState(null)
   const [search, setSearch] = useState('')
   const apiKey = 'AIzaSyDbN61f777fY1kbaXkCRQiFHfsZ22gOQrU'
-  const parameters = 'part=id,snippet&maxResults=50&type=video'
+  const parameters = 'part=id,snippet&maxResults=20&type=video'
 
   const handleSearch = () => {
     api
