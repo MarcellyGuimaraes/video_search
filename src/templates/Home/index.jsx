@@ -5,7 +5,7 @@ import api from '../../api'
 const Home = () => {
   const [videos, setVideos] = useState(null)
   const [search, setSearch] = useState('')
-  const apiKey = 'AIzaSyDbN61f777fY1kbaXkCRQiFHfsZ22gOQrU'
+  const apiKey = 'AIzaSyAPokO25BeZyHocPg83NsEzJcxx3-QHqf0'
   const parameters = 'part=id,snippet&maxResults=20&type=video'
 
   const handleSearch = () => {
@@ -22,28 +22,41 @@ const Home = () => {
 
   return (
     <>
-      <input
-        type="text"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
-      <button onClick={handleSearch}>Pesquisar</button>
-      <div className="grid grid-cols-1 place-items-center gap-0 md:grid-cols-2 md:gap-5 lg:grid-cols-3">
-        {console.log(videos)}
+      <div className="flex items-center justify-center mb-4">
+        <input
+          type="text"
+          className="p-2 bg-slate-100 border m-3"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+        <button
+          className="rounded-md bg-red-600 p-2 text-white hover:bg-red-800"
+          onClick={handleSearch}
+        >
+          Pesquisar
+        </button>
+      </div>
+      <div className="grid grid-cols-1 place-items-center gap-20 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:place-items-start lg:justify-items-center">
         {search ? (
           videos.map((video) => (
-            <div className="mb-6">
-              <img src={video.snippet.thumbnails.high.url} alt="" />
+            <div className="mb-6 w-4/5">
+              <img
+                src={video.snippet.thumbnails.high.url}
+                className="w-full h-full"
+                alt=""
+              />
               <p className="text-xl font-bold max-w-md overflow-hidden">
                 {video.snippet.title}
               </p>
               <p className="text-sm text-gray-500">
                 {video.snippet.channelTitle}
               </p>
-              <p className="truncate max-w-md">{video.snippet.description}</p>
+              <p className="truncate max-w-md mb-4">
+                {video.snippet.description}
+              </p>
               <Link
                 to={`/detail/${video.id.videoId}`}
-                className="bg-red-600 p-2 mt-5 text-white rounded-md"
+                className="rounded-md bg-red-600 p-2 text-white hover:bg-red-800"
               >
                 Ver Mais
               </Link>
