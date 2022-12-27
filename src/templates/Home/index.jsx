@@ -3,18 +3,19 @@ import { Link } from 'react-router-dom'
 import api from '../../api'
 
 const Home = () => {
-  const [videos, setVideos] = useState(null)
+  const [videos, setVideos] = useState([])
   const [search, setSearch] = useState('')
   const apiKey = 'AIzaSyDbN61f777fY1kbaXkCRQiFHfsZ22gOQrU'
   const parameters = 'part=id,snippet&maxResults=40&type=video'
 
   const handleSearch = () => {
     api
-      .get(`/search?q=felca&${parameters}&key=${apiKey}`)
+      .get(`/search?q=${search}&${parameters}&key=${apiKey}`)
       .then((r) => setVideos(r.data.items))
   }
 
   useEffect(() => {
+    alert(`${search}`)
     handleSearch()
   }, [])
 
@@ -37,8 +38,7 @@ const Home = () => {
         </button>
       </div>
       <div className="grid grid-cols-1 place-items-center gap-20 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:place-items-start lg:justify-items-center">
-        {
-          // search ? (
+        {search ? (
           videos.map((video) => (
             <div className="mb-6 w-4/5" key={video.id.videoId}>
               <img
@@ -65,10 +65,9 @@ const Home = () => {
               <br />
             </div>
           ))
-          // ) : (
-          //   <p>Pesquise aqui seu vídeo</p>
-          // )
-        }
+        ) : (
+          <p>Pesquise aqui seu vídeo</p>
+        )}
       </div>
     </>
   )
