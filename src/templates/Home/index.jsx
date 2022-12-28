@@ -41,7 +41,9 @@ const Home = () => {
 
   return (
     <div
-      className={`bg-[#fe9b9b] ${videos.length > 3 ? `h-full` : `h-screen`}`}
+      className={`bg-[#fe9b9b] ${
+        videos == null || videos.length < 3 ? `h-screen` : `h-full`
+      }`}
     >
       <Header />
       <div className="flex items-center justify-center mb-4 pt-5">
@@ -90,7 +92,7 @@ const Home = () => {
             ))}
           </div>
         ) : (
-          <div className="flex items-center justify-center">
+          <div className="flex items-center h-[81.1vh] justify-center">
             <p className="text-xl font-extrabold font-mono">
               Pesquise aqui seu vídeo
             </p>
