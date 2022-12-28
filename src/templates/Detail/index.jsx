@@ -20,7 +20,7 @@ const Detail = () => {
   if (!video) return null
 
   return (
-    <>
+    <div className={`bg-[#fe9b9b] h-full`}>
       <Header />
       <div className="py-20">
         <div className="grid grid-cols-1 px-7 md:grid-cols-2 lg:grid-cols-3">
@@ -62,7 +62,7 @@ const Detail = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
 

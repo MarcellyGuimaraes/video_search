@@ -40,7 +40,9 @@ const Home = () => {
   if (!videos) return null
 
   return (
-    <>
+    <div
+      className={`bg-[#fe9b9b] ${videos.length > 3 ? `h-full` : `h-screen`}`}
+    >
       <Header />
       {console.log('login', localStorage.getItem('login'))}
       <div className="flex items-center justify-center mb-4 pt-5">
@@ -89,14 +91,14 @@ const Home = () => {
             ))}
           </div>
         ) : (
-          <div className="flex h-[80.1vh] items-center justify-center">
+          <div className="flex items-center justify-center">
             <p className="text-xl font-extrabold font-mono">
               Pesquise aqui seu vídeo
             </p>
           </div>
         )}
       </div>
-    </>
+    </div>
   )
 }
 
