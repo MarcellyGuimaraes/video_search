@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import api from '../../api'
@@ -11,17 +12,25 @@ const Home = () => {
   const parameters = 'part=id,snippet&maxResults=30&type=video'
 
   const handleSearch = () => {
-    api
-      .get(`/search?q=${search}&${parameters}&key=${apiKey}`)
-      .then((r) => setVideos(r.data.items))
+    try {
+      api
+        .get(`/search?q=${search}&${parameters}&key=${apiKey}`)
+        .then((r) => setVideos(r.data.items))
+    } catch {
+      axios.get('data.json').then((r) => setVideos(r.data.items))
+    }
   }
 
   useEffect(() => {
-    getItem
-      ? api
-          .get(`/search?q=${getItem}&${parameters}&key=${apiKey}`)
-          .then((r) => setVideos(r.data.items))
-      : handleSearch()
+    try {
+      getItem
+        ? api
+            .get(`/search?q=${getItem}&${parameters}&key=${apiKey}`)
+            .then((r) => setVideos(r.data.items))
+        : handleSearch()
+    } catch {
+      axios.get('data.json').then((r) => setVideos(r.data.items))
+    }
   }, [])
 
   const handleSave = () => {
@@ -33,6 +42,7 @@ const Home = () => {
   return (
     <>
       <Header />
+      {console.log('login', localStorage.getItem('login'))}
       <div className="flex items-center justify-center mb-4 pt-5">
         <input
           type="text"

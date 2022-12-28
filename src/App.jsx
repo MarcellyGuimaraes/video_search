@@ -5,8 +5,10 @@ import PublicRoutes from './routes/public_routes'
 
 function App() {
   const { auth } = useContext(AuthContext)
+  const getAuth = localStorage.getItem('login')
+  console.log(getAuth)
 
-  return auth ? <PrivateRoutes /> : <PublicRoutes />
+  return getAuth || auth ? <PrivateRoutes /> : <PublicRoutes />
 }
 
 export default App

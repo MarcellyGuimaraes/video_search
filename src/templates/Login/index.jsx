@@ -12,6 +12,7 @@ const Login = () => {
     event.preventDefault()
     if (form.email == 'teste@gmail.com' && form.senha == '12345678') {
       setAuth(true)
+      localStorage.setItem('login', auth)
       navigate('/home')
       window.alert('logado com sucesso')
     } else {
