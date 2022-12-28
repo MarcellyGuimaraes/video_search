@@ -8,7 +8,7 @@ const Home = () => {
   const [videos, setVideos] = useState(null)
   const [search, setSearch] = useState('')
   const getItem = localStorage.getItem('lastSearch')
-  const apiKey = ' AIzaSyBVYoLa7TYl1uk1aj2NJj_SD6reOYJfwO8'
+  const apiKey = 'AIzaSyBCuumGHgQgFAFntV5OHV38roJwPFUtVkE'
   const parameters = 'part=id,snippet&maxResults=30&type=video'
 
   const handleSearch = () => {
