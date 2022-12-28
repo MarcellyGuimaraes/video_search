@@ -14,6 +14,7 @@ const Detail = () => {
     api
       .get(`/videos?id=${id}&${parameters}&key=${apiKey}`)
       .then((r) => setVideo(r.data.items))
+    localStorage.getItem('lastSearch')
   }, [])
   if (!video) return null
 

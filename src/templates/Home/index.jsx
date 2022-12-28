@@ -1,12 +1,15 @@
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+// import data from '../../data.json'
 import api from '../../api'
 
 const Home = () => {
-  const [videos, setVideos] = useState([])
+  const [videos, setVideos] = useState(null)
   const [search, setSearch] = useState('')
+  const getItem = localStorage.getItem('lastSearch')
   const apiKey = 'AIzaSyDbN61f777fY1kbaXkCRQiFHfsZ22gOQrU'
-  const parameters = 'part=id,snippet&maxResults=40&type=video'
+  const parameters = 'part=id,snippet&maxResults=30&type=video'
 
   const handleSearch = () => {
     api
@@ -15,9 +18,16 @@ const Home = () => {
   }
 
   useEffect(() => {
-    alert(`${search}`)
-    handleSearch()
+    getItem
+      ? api
+          .get(`/search?q=${getItem}&${parameters}&key=${apiKey}`)
+          .then((r) => setVideos(r.data.items))
+      : handleSearch()
   }, [])
+
+  const handleSave = () => {
+    localStorage.setItem('lastSearch', search)
+  }
 
   if (!videos) return null
 
@@ -38,7 +48,7 @@ const Home = () => {
         </button>
       </div>
       <div className="grid grid-cols-1 place-items-center gap-20 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:place-items-start lg:justify-items-center">
-        {search ? (
+        {search || getItem ? (
           videos.map((video) => (
             <div className="mb-6 w-4/5" key={video.id.videoId}>
               <img
@@ -57,6 +67,7 @@ const Home = () => {
               </p>
               <Link
                 to={`/detail/${video.id.videoId}`}
+                onClick={handleSave}
                 className="rounded-md bg-red-600 p-2 text-white hover:bg-red-800"
               >
                 Ver Mais
