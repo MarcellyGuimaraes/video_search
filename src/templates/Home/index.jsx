@@ -47,37 +47,43 @@ const Home = () => {
           Pesquisar
         </button>
       </div>
-      <div className="grid grid-cols-1 place-items-center gap-20 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:place-items-start lg:justify-items-center">
+      <div>
         {search || getItem ? (
-          videos.map((video) => (
-            <div className="mb-6 w-4/5" key={video.id.videoId}>
-              <img
-                src={video.snippet.thumbnails.high.url}
-                className="w-full h-full"
-                alt=""
-              />
-              <p className="text-xl font-bold max-w-md overflow-hidden">
-                {video.snippet.title}
-              </p>
-              <p className="text-sm text-gray-500">
-                {video.snippet.channelTitle}
-              </p>
-              <p className="truncate max-w-md mb-4">
-                {video.snippet.description}
-              </p>
-              <Link
-                to={`/detail/${video.id.videoId}`}
-                onClick={handleSave}
-                className="rounded-md bg-red-600 p-2 text-white hover:bg-red-800"
-              >
-                Ver Mais
-              </Link>
+          <div className="grid grid-cols-1 place-items-center gap-20 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:place-items-start lg:justify-items-center">
+            {videos.map((video) => (
+              <div className="mb-6 w-4/5" key={video.id.videoId}>
+                <img
+                  src={video.snippet.thumbnails.high.url}
+                  className="w-full h-full"
+                  alt=""
+                />
+                <p className="text-xl font-bold max-w-md overflow-hidden">
+                  {video.snippet.title}
+                </p>
+                <p className="text-sm text-gray-500">
+                  {video.snippet.channelTitle}
+                </p>
+                <p className="truncate max-w-md mb-4">
+                  {video.snippet.description}
+                </p>
+                <Link
+                  to={`/detail/${video.id.videoId}`}
+                  onClick={handleSave}
+                  className="rounded-md bg-red-600 p-2 text-white hover:bg-red-800"
+                >
+                  Ver Mais
+                </Link>
 
-              <br />
-            </div>
-          ))
+                <br />
+              </div>
+            ))}
+          </div>
         ) : (
-          <p>Pesquise aqui seu vídeo</p>
+          <div className="flex h-[80.1vh] items-center justify-center">
+            <p className="text-xl font-extrabold font-mono">
+              Pesquise aqui seu vídeo
+            </p>
+          </div>
         )}
       </div>
     </>
