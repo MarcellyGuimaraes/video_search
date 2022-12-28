@@ -1,14 +1,13 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-// import data from '../../data.json'
 import api from '../../api'
+import Header from '../../components/Header'
 
 const Home = () => {
   const [videos, setVideos] = useState(null)
   const [search, setSearch] = useState('')
   const getItem = localStorage.getItem('lastSearch')
-  const apiKey = 'AIzaSyDbN61f777fY1kbaXkCRQiFHfsZ22gOQrU'
+  const apiKey = ' AIzaSyBVYoLa7TYl1uk1aj2NJj_SD6reOYJfwO8'
   const parameters = 'part=id,snippet&maxResults=30&type=video'
 
   const handleSearch = () => {
@@ -33,7 +32,8 @@ const Home = () => {
 
   return (
     <>
-      <div className="flex items-center justify-center mb-4">
+      <Header />
+      <div className="flex items-center justify-center mb-4 pt-5">
         <input
           type="text"
           className="p-2 bg-slate-100 border m-3"

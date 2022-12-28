@@ -41,6 +41,7 @@ const Login = () => {
             <input
               className="text-gray-base mb-7 h-12 w-full rounded border border-gray-200 py-5 px-4 text-sm"
               placeholder="A Senha é: 12345678"
+              type="password"
               onChange={(e) =>
                 setForm({ ...form, [e.target.name]: e.target.value })
               }
