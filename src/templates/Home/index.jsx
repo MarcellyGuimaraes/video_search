@@ -44,7 +44,6 @@ const Home = () => {
       className={`bg-[#fe9b9b] ${videos.length > 3 ? `h-full` : `h-screen`}`}
     >
       <Header />
-      {console.log('login', localStorage.getItem('login'))}
       <div className="flex items-center justify-center mb-4 pt-5">
         <input
           type="text"
@@ -60,7 +59,7 @@ const Home = () => {
         </button>
       </div>
       <div>
-        {search || getItem ? (
+        {getItem || search ? (
           <div className="grid grid-cols-1 place-items-center gap-20 md:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:place-items-start lg:justify-items-center">
             {videos.map((video) => (
               <div className="mb-6 w-4/5" key={video.id.videoId}>
