@@ -36,7 +36,7 @@ const Detail = () => {
               id="ytplayer"
               type="text/html"
               className="w-full h-96"
-              src={`http://www.youtube.com/embed/${video[0].id}?autoplay=1`}
+              src={`https://www.youtube.com/embed/${video[0].id}?autoplay=1`}
               frameBorder="0"
             />
             <div className="flex justify-between m-3">
